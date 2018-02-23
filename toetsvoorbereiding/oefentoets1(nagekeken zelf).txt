@@ -1,0 +1,70 @@
+//opgave 1
+/*(object)*/
+Student student1 = new Student("Tom", {5,8,9,7});
+
+public float bepaalEindcijfer(){//(Student s)
+  
+  private float totaal;//totaal=0;
+  private float eindcijfer;//float[] eindcijfer = s.getCijferLijst();
+  for(int i = 0; i < student1.cijfers.length; i++){
+	//if(cijferlijst[i]<5.5) toevoegen.
+	totaal += student1.cijfers[i];
+	eindcijfer = totaal/student1.cijfers.length;
+  }
+  return eindcijfer;
+}
+
+//opgave 2
+//Twee keer dezelfde naam gebruikt met andere paramenters.
+
+
+//opgave 3
+public class Gokspel {
+  private float saldo;
+  private int nKeerGewonnen, maxNKeerGewonnen;
+  
+  Gokspel(){
+    saldo = 0;
+    nKeerGewonnen = 0;
+    maxNKeerGewonnen = 0;
+  }
+  Gokspel(float bedrag){
+    this.saldo = bedrag;
+  }
+  
+  public void werpGeldIn(float bedrag){
+    saldo += bedrag;
+  }
+  
+  public float betaalUit() {//werkt dit ook?
+    return saldo;
+	saldo = 0;
+  }
+  public void dubbelOfNiets(){
+    Random r = new Random();
+	int willekeurig = r.nextInt(4);
+	  if(saldo > 0) {
+		if(willekeurig = 0){
+		  saldo = 0;
+		  nKeerGewonnen = 0;
+		  println("Helaas verloren, probeer het nog een keer!");
+		}else{
+		  saldo += saldo;
+		  nKeerGewonnen++;
+		  if(nKeerGewonnen > maxNKeerGewonnen){
+		    maxNKeerGewonnen = nKeerGewonnen;
+		  }
+		  println("Gefeliciteerd! Gewonnen! Probeer het nog een keer!");
+		}
+	  }else{
+	    println("Werp geld in om verder te gaan.");
+	  }
+  }
+  
+  String toString() {
+    return saldo;//string moest meer bevatten (nKeerGewonnen, maxNKeerGewonnen).
+  }
+}
+
+//opgave 4
+op papier.
