@@ -6,7 +6,6 @@ public class GraphicsEngineApp extends PApplet {
 
 	public static void main(String[] args) {
 		PApplet.main("GraphicsEngineApp");
-
 	}
 
 	protected ArrayList<WeergaveObject> weergaveLijst = new ArrayList<WeergaveObject>();
@@ -14,28 +13,21 @@ public class GraphicsEngineApp extends PApplet {
 	private IReageerder i = new HalloReageerder();
 
 	public void settings() {
-		size(500,500);
+		size(500, 500);
 	}
 
 	public void setup() {
-
 		weergaveLijst.add(r);
 		r.voegReageerderToe(i);
-
 	}
 
 	public void draw() {
-		
 		r.geefWeer(this, 150, 150);
-
 	}
 
 	public void mousePressed() {
-		
-		if(r.isMuisBinnen(mouseX, mouseY) == true) {
+		if (r.isMuisBinnen(mouseX, mouseY) == true) {
 			r.behandelMousePressedGebeurtenis();
 		}
-
 	}
-
 }

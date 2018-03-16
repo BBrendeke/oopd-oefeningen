@@ -2,14 +2,14 @@ import processing.core.PApplet;
 
 import java.util.ArrayList;
 
-public abstract class WeergaveObject extends PApplet {
-	
+public abstract class WeergaveObject {
+
 	protected float x, y, vx, vy, ax, ay, hoogte, breedte;
 	protected boolean isZichtbaar;
-	
-	private ArrayList<IReageerder> reageerders = new ArrayList<>();
-	
-	public WeergaveObject(float x, float y, float hoogte, float breedte){
+
+	private ArrayList<IReageerder> reageerdersLijst = new ArrayList<>();
+
+	public WeergaveObject(float x, float y, float hoogte, float breedte) {
 		this.x = x;
 		this.y = y;
 		this.hoogte = hoogte;
@@ -19,36 +19,32 @@ public abstract class WeergaveObject extends PApplet {
 		ax = 0;
 		ay = 0;
 	}
-	 
+
 	public void doeStap() {
 		x++;
 	}
-	
-	public abstract void geefWeer(PApplet app, float startX, float startY);
-	
-	public void geefMousePressedGebeurtenis(int mouseX, int mouseY) {
 
+	public abstract void geefWeer(PApplet app, float startX, float startY);
+
+	public void geefMousePressedGebeurtenis(int mouseX, int mouseY) {
 		System.out.println("MouseX: " + mouseX);
 		System.out.println("MouseY: " + mouseY);
-
 	}
 
 	protected abstract boolean isMuisBinnen(int muisX, int muisY);
 
 	protected void behandelMousePressedGebeurtenis() {
-
-		for (IReageerder r : reageerders) {
+		for (IReageerder r : reageerdersLijst) {
 			r.doeActie();
 		}
+	}
 
-	}
-	
 	public void voegReageerderToe(IReageerder reageerder) {
-		reageerders.add(reageerder);
+		reageerdersLijst.add(reageerder);
 	}
-	
+
 	public void verwijderReageerder(IReageerder reageerder) {
-		reageerders.remove(reageerder);
+		reageerdersLijst.remove(reageerder);
 	}
 
 	public float getX() {
@@ -124,12 +120,11 @@ public abstract class WeergaveObject extends PApplet {
 	}
 
 	public ArrayList<IReageerder> getReageerders() {
-		return reageerders;
+		return reageerdersLijst;
 	}
 
 	public void setReageerders(ArrayList<IReageerder> reageerders) {
-		this.reageerders = reageerders;
+		this.reageerdersLijst = reageerders;
 	}
-	
-	
+
 }
