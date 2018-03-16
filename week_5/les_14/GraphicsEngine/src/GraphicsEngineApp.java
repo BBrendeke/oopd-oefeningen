@@ -9,25 +9,34 @@ public class GraphicsEngineApp extends PApplet {
 	}
 
 	protected ArrayList<WeergaveObject> weergaveLijst = new ArrayList<WeergaveObject>();
-	private Rechthoek r = new Rechthoek(150, 150, 50, 50, 255);
-	private IReageerder i = new HalloReageerder();
+	public WeergaveObjectContainer woc = new WeergaveObjectContainer(50, 50);
 
 	public void settings() {
 		size(500, 500);
 	}
 
 	public void setup() {
-		weergaveLijst.add(r);
-		r.voegReageerderToe(i);
+		weergaveLijst.add(woc);
+		
+		Rechthoek r1 = new Rechthoek(20, 20, 100, 100, 40);
+		Rechthoek r2 = new Rechthoek(40, 40, 100, 100, 60);
+		woc.voegToe(r1);
+		woc.voegToe(r2);
 	}
 
 	public void draw() {
-		r.geefWeer(this, 150, 150);
+		background(255);
+		for (WeergaveObject wo : weergaveLijst) {
+			wo.geefWeer(this, wo.x, wo.y);
+			wo.doeStap();
+		}
 	}
 
 	public void mousePressed() {
-		if (r.isMuisBinnen(mouseX, mouseY) == true) {
-			r.behandelMousePressedGebeurtenis();
+		for (WeergaveObject wo : weergaveLijst) {
+			if (wo.isMuisBinnen(mouseX, mouseY)) {
+				woc.verwijder(wo);
+			}
 		}
 	}
 }

@@ -10,7 +10,7 @@ public class Rechthoek extends Figuur {
 	@Override
 	public void geefWeer(PApplet app, float startX, float startY) {
 		app.fill(getVulkleur());
-		app.rect(startX, startY, breedte, hoogte);
+		app.rect(startX + x, startY + y, breedte, hoogte);
 	}
 
 	@Override
