@@ -19,18 +19,19 @@ public class WeergaveObjectContainer extends WeergaveObject {
 	}
 	
 	@Override
-	public void geefWeer(PApplet app, float startX, float startY) {
-		for(WeergaveObject wObject : weergaveLijst) {
-			wObject.geefWeer(app, startX + x, startY + y);
-		}		
-	}
+    public void geefWeer(PApplet app, float startX, float startY) {
+        for (WeergaveObject wObject: weergaveLijst) {
+            wObject.geefWeer(app, wObject.x + startX, wObject.y + startY);
+        }
+    }
 
 	@Override
-	protected boolean isMuisBinnen(int mouseX, int mouseY) {
-		if (mouseX >= x && mouseX < x + breedte && mouseY >= y && mouseY < y + hoogte) {
-			return true;
-		} else {
-			return false;
+	protected boolean isMuisBinnen(int muisX, int muisY) {
+		for(WeergaveObject wObject : weergaveLijst) {
+			if(wObject.isMuisBinnen((int)(muisX - x), (int)(muisY - y))) {
+				return true;
+			}
 		}
+		return false;
 	}	
 }

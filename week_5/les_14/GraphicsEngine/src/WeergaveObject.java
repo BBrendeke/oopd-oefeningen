@@ -22,6 +22,9 @@ public abstract class WeergaveObject {
 
 	public void doeStap() {
 		x++;
+		if(x > 300) {
+			x = 0;
+		}
 	}
 
 	public abstract void geefWeer(PApplet app, float startX, float startY);

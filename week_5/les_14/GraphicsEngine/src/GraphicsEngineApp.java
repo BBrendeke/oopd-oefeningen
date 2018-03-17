@@ -28,13 +28,14 @@ public class GraphicsEngineApp extends PApplet {
 		background(255);
 		for (WeergaveObject wo : weergaveLijst) {
 			wo.geefWeer(this, wo.x, wo.y);
-			wo.doeStap();
+			//wo.doeStap();
 		}
 	}
 
 	public void mousePressed() {
 		for (WeergaveObject wo : weergaveLijst) {
 			if (wo.isMuisBinnen(mouseX, mouseY)) {
+				System.out.println("Hallo");
 				woc.verwijder(wo);
 			}
 		}
